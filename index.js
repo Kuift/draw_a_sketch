@@ -48,7 +48,18 @@ function updateGrid(nbOfSquares) {
 }
 let currentPenColor = "red";
 function getPencilColor() {
-    return currentPenColor;
+    const pentype = document.querySelector("#penType");
+    if(pentype.value == "normal")
+    {
+        return currentPenColor;
+    }
+    else if(pentype.value == "rainbow")
+    {
+        return `rgb(${rdmValue()},${rdmValue()},${rdmValue()})`;
+    }
+}
+function rdmValue(){
+    return Math.floor(Math.random() * 255)+1;
 }
 updateGrid(squaresNbSlider.value);
 
