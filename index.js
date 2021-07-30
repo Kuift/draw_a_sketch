@@ -12,7 +12,7 @@ clearButton.onclick = function () {
 }
 
 const colorPicker = document.querySelector("#colorPicker");
-colorPicker.addEventListener("input", function(){
+colorPicker.addEventListener("input", function () {
     currentPenColor = this.value;
 });
 
@@ -29,7 +29,7 @@ function updateGrid(nbOfSquares) {
         function (event) {
             event.stopPropagation();
             if (event.target.className == "drawable") {
-                let colorValue = getPencilColor();
+                let colorValue = getPencilColor(event.target.style.background);
                 event.target.style.background = colorValue;
             }
         }
@@ -46,20 +46,34 @@ function updateGrid(nbOfSquares) {
         newContainer.appendChild(div);
     }
 }
-let currentPenColor = "red";
-function getPencilColor() {
+let currentPenColor = "rgb(255,0,0)";
+function getPencilColor(currentCellColor) {
     const pentype = document.querySelector("#penType");
-    if(pentype.value == "normal")
+    const accumulation = document.querySelector("#accumulation");
+    let newAccumulatedColor = "";
+    if(currentCellColor.length > 3 && accumulation.checked) //if the color accumulation button is checked, then we gradually increase the color of the current cell.
     {
-        return currentPenColor;
+        let currentRGBArray = currentCellColor.split("(")[1].split(")")[0].split(",");
+        let accumulation = 0.05;
+        let r = parseInt(currentRGBArray[0], 10);
+        r = Math.floor(Math.min(r * (1 + accumulation) + parseInt(currentPenColor.substring(1,3),16)*accumulation, 255));
+        let g = parseInt(currentRGBArray[1], 10);
+        g = Math.floor(Math.min(g * (1 + accumulation) + parseInt(currentPenColor.substring(3,5),16)*accumulation, 255));
+        let b = parseInt(currentRGBArray[2], 10);
+        b = Math.floor(Math.min(b * (1 + accumulation) + parseInt(currentPenColor.substring(5,7),16)*accumulation, 255));
+        newAccumulatedColor = `rgb(${r}, ${g}, ${b})`;
+        console.log(newAccumulatedColor);
     }
-    else if(pentype.value == "rainbow")
-    {
-        return `rgb(${rdmValue()},${rdmValue()},${rdmValue()})`;
+
+    if (pentype.value == "normal") {
+        return newAccumulatedColor || currentPenColor;
+    }
+    else if (pentype.value == "rainbow") {
+        return `#${rdmValue()}`;
     }
 }
-function rdmValue(){
-    return Math.floor(Math.random() * 255)+1;
+function rdmValue() {
+    return Math.floor(Math.random() * 16777215).toString(16);
 }
 updateGrid(squaresNbSlider.value);
 
