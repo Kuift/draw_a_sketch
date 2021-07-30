@@ -5,6 +5,14 @@ squaresNbSlider.oninput = function(){
     padDimensionTxt.innerText = `Pad dimension : ${squaresNbSlider.value} x ${squaresNbSlider.value}`;
     updateGrid(squaresNbSlider.value);
 }
+
+const clearButton = document.querySelector("#clearButton");
+clearButton.onclick = function(){
+    updateGrid(squaresNbSlider.value);
+}
+
+
+
 function updateGrid(nbOfSquares){
     const container = document.querySelector(".container");
     const everythingHolder = document.querySelector(".everythingHolder");
