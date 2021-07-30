@@ -5,17 +5,15 @@
     height:50em;
     width: 50em;
     display: grid;
-    grid-template-columns: repeat(16,auto);
+    grid-template-columns: repeat(16,0px);
     align-items: center;
-    gap: 0px;
 }
 .drawable{
-    width: 90%;
-    height: 90%;
+    width: 98%;
+    height: 98%;
+    margin: 0px;
+    padding: 0px;
     background: black;
-}
-.drawable:hover{
-    background: red;
 }
 #slider{
     width: 50em;
