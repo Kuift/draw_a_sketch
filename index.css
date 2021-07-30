@@ -1,0 +1,19 @@
+.container{
+    border-color: red;
+    border-width: 10px;
+    border-style: dotted;
+    height:800px;
+    width: 800px;
+    display: grid;
+    grid-template-columns: repeat(16,auto);
+    align-items: center;
+    gap: 0px;
+}
+.drawable{
+    width: 90%;
+    height: 90%;
+    background: black;
+}
+.drawable:hover{
+    background: red;
+}
