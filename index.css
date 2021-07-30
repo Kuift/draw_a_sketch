@@ -2,8 +2,8 @@
     border-color: red;
     border-width: 10px;
     border-style: dotted;
-    height:800px;
-    width: 800px;
+    height:50em;
+    width: 50em;
     display: grid;
     grid-template-columns: repeat(16,auto);
     align-items: center;
@@ -16,4 +16,7 @@
 }
 .drawable:hover{
     background: red;
+}
+#slider{
+    width: 50em;
 }

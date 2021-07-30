@@ -1,6 +1,8 @@
 //create a div, give it the class of drawable, make it child to container, do this n x n time
 const squaresNbSlider = document.querySelector(".slider");
 squaresNbSlider.oninput = function(){
+    const padDimensionTxt = document.querySelector("#padDimensionTxt");
+    padDimensionTxt.innerText = `Pad dimension : ${squaresNbSlider.value} x ${squaresNbSlider.value}`;
     updateGrid(squaresNbSlider.value);
 }
 function updateGrid(nbOfSquares){
