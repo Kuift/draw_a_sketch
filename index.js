@@ -14,6 +14,13 @@ function updateGrid(nbOfSquares){
     const newContainer = document.createElement("div");
     newContainer.classList.add("container");
     newContainer.setAttribute("style",`grid-template-columns: repeat(${nbOfSquares},auto);`);
+    newContainer.addEventListener("mouseover",
+      function (event) { 
+        event.stopPropagation();
+        if(event.target.className == "drawable"){
+            event.target.style.background = "red";}
+        }
+    );
 
     everythingHolder.insertBefore(
       newContainer,
